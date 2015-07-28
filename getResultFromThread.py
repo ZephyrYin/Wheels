@@ -15,7 +15,7 @@ def foo(bar):
 
 
 tests = ['a','b','c']
-pool = Pool(processes=3)
+pool = Pool(processes=2)
 result = []
 for i in range(3):
     result.append(pool.apply_async(foo,(tests[i])))
