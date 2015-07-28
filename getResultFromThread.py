@@ -15,11 +15,16 @@ def foo(bar):
 
 
 tests = ['a','b','c']
-pool = Pool(processes=2)
+pool = Pool(processes=3)
 result = []
 for i in range(3):
     result.append(pool.apply_async(foo,(tests[i])))
-
+# results = pool.map(foo, tests)
+# #pool.join()
+# for result in results:
+#   print result
+# pool.close()
+# pool.join()
 print 'hei'
 for i in range(3):
   returnValue = result[i].get()
