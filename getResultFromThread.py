@@ -1,4 +1,5 @@
-from multiprocessing.pool import ThreadPool
+__author__ = 'xyin'
+from multiprocessing import Pool
 import time
 
 def foo(bar):
@@ -9,16 +10,18 @@ def foo(bar):
     elif bar == 'b':
       time.sleep(0.8)
     else:
-      time.sleep(1.2)
+      time.sleep(0.2)
   return bar
 
 
 tests = ['a','b','c']
-pool = []
+pool = Pool(processes=2)
 result = []
 for i in range(3):
-  pool.append(ThreadPool(processes=i+1))
-  result.append(pool[-1].apply_async(foo, (tests[i])))
+    result.append(pool.apply_async(foo,(tests[i])))
+
+print 'hei'
 for i in range(3):
   returnValue = result[i].get()
-  print returnValue
+  print 'process ' + tests[i] + ' finished, return value: ' + returnValue
+print 'done'
